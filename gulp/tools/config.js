@@ -19,7 +19,8 @@ exports.tasks = [
         path: path.join(tasks, "html.js"),
         src: path.join(src, "markup/*.html"),
         watch: path.join(src, "markup/**/*.html"),
-        build: build
+        build: build,
+        browserSyncReload: true
     },
     {
         sort: 0,
@@ -28,7 +29,8 @@ exports.tasks = [
         path: path.join(tasks, "sass.js"),
         src: path.join(src, "styles/sass/*.{scss,sass}"),
         watch: path.join(src, "styles/sass/**/*.{scss,sass}"),
-        build: path.join(build, "css")
+        build: path.join(build, "css"),
+        browserSyncStream: true
     },
     {
         sort: 0,
@@ -37,7 +39,8 @@ exports.tasks = [
         path: path.join(tasks, "less.js"),
         src: path.join(src, "styles/less/*.less"),
         watch: path.join(src, "styles/less/**/*.less"),
-        build: path.join(build, "css")
+        build: path.join(build, "css"),
+        browserSyncStream: true
     },
     {
         sort: 0,
@@ -46,7 +49,8 @@ exports.tasks = [
         path: path.join(tasks, "stylus.js"),
         src: path.join(src, "styles/stylus/*.styl"),
         watch: path.join(src, "styles/stylus/**/*.styl"),
-        build: path.join(build, "css")
+        build: path.join(build, "css"),
+        browserSyncStream: true
     },
     {
         sort: 1,

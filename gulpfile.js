@@ -4,16 +4,21 @@ const gulp = require("gulp");
 const config = require("./gulp/tools/config");
 const env = require("./gulp/tools/env")("dev", ["dev", "production", "sourcemaps"]);
 
+if (env.dev){
+    var browserSync = require("browser-sync").create("GulpServer");
+}
+
 let tasks = [];
 let watches = [];
 
-function lazyLoadTask({ uses, sort, name, path, src, build, watch } = {}){
+function lazyLoadTask({ uses, sort, name, path, src, build, watch, browserSyncStream, browserSyncReload } = {}){
     if (uses){
         let stream = require(path)({
             src,
             build,
             name,
-            env
+            env,
+            browserSyncStream
         });
 
         gulp.task(name, stream);
@@ -26,7 +31,8 @@ function lazyLoadTask({ uses, sort, name, path, src, build, watch } = {}){
         if (watch && env.dev){
             watches.push({
                 watch,
-                name
+                name,
+                browserSyncReload
             });
         }
     }
@@ -44,8 +50,21 @@ tasks = tasks
 
 if (env.dev){
     gulp.task("watch", function(){
-        watches.forEach(function({ watch, name }){
-            gulp.watch(watch, gulp.series(name));
+
+        if (browserSync){
+            browserSync.init({
+                server: {
+                    baseDir: "./build"
+                }
+            });
+        }
+
+        watches.forEach(function({ watch, name, browserSyncReload }){
+            if (browserSync && browserSyncReload){
+                gulp.watch(watch, gulp.series(name)).on("change", browserSync.reload);
+            } else {
+                gulp.watch(watch, gulp.series(name));
+            }
         });
     });
 
