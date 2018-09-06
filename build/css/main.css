@@ -1,4 +1,29 @@
 /* sass style entry */
+.svg-icon-calendar, .svg-icon-hourglass, .svg-icon-smartphone-call {
+  display: inline-block;
+  background: url("../image/svg/sprite-svg-css.svg") no-repeat; }
+
+.svg-icon-calendar {
+  background-position: 100% 0; }
+
+.svg-icon-calendar-dims {
+  width: 57px;
+  height: 57px; }
+
+.svg-icon-hourglass {
+  background-position: 0 0; }
+
+.svg-icon-hourglass-dims {
+  width: 60px;
+  height: 60px; }
+
+.svg-icon-smartphone-call {
+  background-position: 0 100%; }
+
+.svg-icon-smartphone-call-dims {
+  width: 35px;
+  height: 35px; }
+
 .icon {
   display: inline-block;
   background-repeat: no-repeat;
@@ -8,17 +33,17 @@
     .icon {
       background-image: url("../image/sprite-image@2x.png"); } }
 
-.icon_calendar {
+.icon-calendar {
   background-position: 0px 0px;
   width: 32px;
   height: 32px; }
 
-.icon_hourglass {
+.icon-hourglass {
   background-position: -47px 0px;
   width: 32px;
   height: 32px; }
 
-.icon_smartphone-call {
+.icon-smartphone-call {
   background-position: 0px -47px;
   width: 32px;
   height: 32px; }

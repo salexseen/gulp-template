@@ -92,5 +92,15 @@ exports.tasks = [
     spritesmith: {
       retinaSrcFilter: path.join(src, "image/sprite/*@2x.{jpeg,png,gif,jpg,bmp}")
     }
+  },
+  {
+    sort: 10,
+    uses: true,
+    name: "sprite:svg",
+    path: path.join(tasks, "sprite-svg.js"),
+    src: path.join(src, "image/svg/**/*.svg"),
+    build: path.join(build, "image/svg"),
+    style: path.join(src, "styles/sprite"),
+    cssTemplate: path.join(src, "styles/sprite/sprite-svg-css-template.scss")
   }
 ];

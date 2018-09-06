@@ -24,6 +24,8 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-stylus": "^2.7.0",
+    "gulp-svg-sprite": "^1.4.0",
+    "gulp-svgmin": "^2.0.0",
     "gulp.spritesmith": "^6.9.0",
     "merge-stream": "^1.0.1",
     "vinyl-buffer": "^1.0.1"

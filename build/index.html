@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru-RU">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <link rel="stylesheet" href="css/main.css">
-    <title>Document</title>
+    <title>Main</title>
   </head>
-  <body></body>
+  <body>
+    <style>
+      ul { list-style: none; margin: 0; padding: 0; font-size: 0; }
+      ul li { display: inline-block; vertical-align: top; padding: 15px; border: 1px solid black; margin-right: 10px; }
+    </style>
+    <h1>Example</h1>
+    <h2>Image sprite (path image/sprite)</h2>
+    <ul>
+      <li><span class="icon icon-calendar"></span></li>
+      <li><span class="icon icon-hourglass"></span></li>
+      <li><span class="icon icon-smartphone-call"></span></li>
+    </ul>
+    <h2>SVG sprite css background (path image/sprite)</h2>
+    <ul>
+      <li><span class="svg-icon-calendar svg-icon-calendar-dims"></span></li>
+      <li><span class="svg-icon-hourglass svg-icon-hourglass-dims"></span></li>
+      <li><span class="svg-icon-smartphone-call svg-icon-smartphone-call-dims"></span></li>
+    </ul>
+    <h2>SVG sprite svg -> use (path image/sprite)</h2>
+    <ul>
+      <li>
+        <svg width="32" height="32">
+          <use xlink:href="image/svg/sprite-svg-symbol.svg#calendar"></use>
+        </svg>
+      </li>
+      <li>
+        <svg width="32" height="32">
+          <use xlink:href="image/svg/sprite-svg-symbol.svg#hourglass"></use>
+        </svg>
+      </li>
+      <li>
+        <svg width="32" height="32">
+          <use xlink:href="image/svg/sprite-svg-symbol.svg#smartphone-call"></use>
+        </svg>
+      </li>
+    </ul>
+  </body>
 </html>

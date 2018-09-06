@@ -1,0 +1,35 @@
+%svg-common {
+  display: inline-block;
+	background: url("../image/svg/sprite-svg-css.svg") no-repeat;
+}
+
+.svg-icon-calendar {
+	@extend %svg-common;
+	background-position: 100% 0;
+}
+
+.svg-icon-calendar-dims {
+	width: 57px;
+	height: 57px;
+}
+
+.svg-icon-hourglass {
+	@extend %svg-common;
+	background-position: 0 0;
+}
+
+.svg-icon-hourglass-dims {
+	width: 60px;
+	height: 60px;
+}
+
+.svg-icon-smartphone-call {
+	@extend %svg-common;
+	background-position: 0 100%;
+}
+
+.svg-icon-smartphone-call-dims {
+	width: 35px;
+	height: 35px;
+}
+

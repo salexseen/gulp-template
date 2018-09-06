@@ -14,7 +14,7 @@
 @each $sprite in $spritesheet-sprites {
   $sprite-name: nth($sprite, 10);
 
-  .icon_#{$sprite-name}{
+  .icon-#{$sprite-name}{
     @include sprite-position($sprite);
     @include sprite-width($sprite);
     @include sprite-height($sprite);
