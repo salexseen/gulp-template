@@ -3,7 +3,7 @@
 const gulp = require("gulp");
 const $ = require("gulp-load-plugins")();
 
-module.exports = function ({ name, src, build, env } = {}) {
+module.exports = function ({ env, task }) {
   let processors = [
     require("autoprefixer")()
   ];
@@ -15,11 +15,11 @@ module.exports = function ({ name, src, build, env } = {}) {
   }
 
   return function (callback) {
-    return gulp.src(src)
+    return gulp.src(task.src)
       .pipe($.plumber({
         errorHandler: $.notify.onError(function (error) {
           return {
-            title: name,
+            title: task.name,
             message: error.message
           };
         })
@@ -27,7 +27,7 @@ module.exports = function ({ name, src, build, env } = {}) {
       .pipe($.if(env.sourcemaps, $.sourcemaps.init()))
       .pipe($.less())
       .pipe($.postcss(processors))
-      .pipe($.if(env.sourcemaps, $.sourcemaps.write()))
-      .pipe(gulp.dest(build));
+      .pipe($.if(env.sourcemaps, $.sourcemaps.write(".")))
+      .pipe(gulp.dest(task.build));
   };
 };

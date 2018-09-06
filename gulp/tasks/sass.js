@@ -3,7 +3,7 @@
 const gulp = require("gulp");
 const $ = require("gulp-load-plugins")();
 
-module.exports = function ({ name, src, build, env, browserSyncStream } = {}) {
+module.exports = function ({ env, task }) {
   let browserSync;
   let processors = [
     require("autoprefixer")()
@@ -24,7 +24,7 @@ module.exports = function ({ name, src, build, env, browserSyncStream } = {}) {
       $.plumber({
         errorHandler: $.notify.onError(function (error) {
           return {
-            title: name,
+            title: task.name,
             message: error.message
           };
         })
@@ -32,11 +32,11 @@ module.exports = function ({ name, src, build, env, browserSyncStream } = {}) {
       $.if(env.sourcemaps, $.sourcemaps.init()),
       $.sass(),
       $.postcss(processors),
-      $.if(env.sourcemaps, $.sourcemaps.write()),
-      gulp.dest(build),
+      $.if(env.sourcemaps, $.sourcemaps.write(".")),
+      gulp.dest(task.build),
     ];
 
-    if (browserSync && browserSyncStream) {
+    if (browserSync && task.browserSyncStream) {
       pipes.push(browserSync.stream())
     }
 
@@ -49,7 +49,7 @@ module.exports = function ({ name, src, build, env, browserSyncStream } = {}) {
     };
 
     return streamCreate(
-      gulp.src(src),
+      gulp.src(task.src),
       pipes
     );
 

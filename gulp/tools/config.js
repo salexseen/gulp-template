@@ -13,7 +13,7 @@ exports.build = build;
 
 exports.tasks = [
   {
-    sort: 2,
+    sort: 100,
     uses: false,
     name: "markup:html",
     path: path.join(tasks, "html.js"),
@@ -23,7 +23,7 @@ exports.tasks = [
     browserSyncReload: true
   },
   {
-    sort: 2,
+    sort: 100,
     uses: true,
     name: "markup:pug",
     path: path.join(tasks, "pug.js"),
@@ -33,7 +33,7 @@ exports.tasks = [
     browserSyncReload: true
   },
   {
-    sort: 0,
+    sort: 50,
     uses: true,
     name: "style:sass",
     path: path.join(tasks, "sass.js"),
@@ -43,8 +43,8 @@ exports.tasks = [
     browserSyncStream: true
   },
   {
-    sort: 0,
-    uses: false,
+    sort: 50,
+    uses: true,
     name: "style:less",
     path: path.join(tasks, "less.js"),
     src: path.join(src, "styles/less/*.less"),
@@ -53,8 +53,8 @@ exports.tasks = [
     browserSyncStream: true
   },
   {
-    sort: 0,
-    uses: false,
+    sort: 50,
+    uses: true,
     name: "style:stylus",
     path: path.join(tasks, "stylus.js"),
     src: path.join(src, "styles/stylus/*.styl"),
@@ -63,7 +63,7 @@ exports.tasks = [
     browserSyncStream: true
   },
   {
-    sort: 1,
+    sort: 10,
     uses: true,
     name: "assets",
     path: path.join(tasks, "assets.js"),
@@ -71,7 +71,7 @@ exports.tasks = [
     build: build
   },
   {
-    sort: 1,
+    sort: 10,
     uses: true,
     name: "image",
     path: path.join(tasks, "image.js"),

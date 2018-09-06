@@ -4,79 +4,91 @@ const gulp = require("gulp");
 const config = require("./gulp/tools/config");
 const env = require("./gulp/tools/env")("dev", ["dev", "production", "sourcemaps"]);
 
-if (env.dev){
-    var browserSync = require("browser-sync").create("GulpServer");
-}
+let browserSync;
+if (env.dev)
+  browserSync = require("browser-sync").create("GulpServer");
 
 let tasks = [];
+let tasksResult = [];
+let tasksSort = {};
 let watches = [];
 
-function lazyLoadTask({ uses, sort, name, path, src, build, watch, browserSyncStream, browserSyncReload } = {}){
-    if (uses){
-        let stream = require(path)({
-            src,
-            build,
-            name,
-            env,
-            browserSyncStream
-        });
-
-        gulp.task(name, stream);
-
-        tasks.push({
-            sort,
-            name
-        });
-
-        if (watch && env.dev){
-            watches.push({
-                watch,
-                name,
-                browserSyncReload
-            });
-        }
-    }
-}
-
-if (Array.isArray(config.tasks)){
-    for (let i = 0, task; i < config.tasks.length; i++){
-        lazyLoadTask(config.tasks[i]);
-    }
-}
-
-tasks = tasks
-    .sort((a, b) => a.sort > b.sort)
-    .map(task => task.name);
-
-if (env.dev){
-    gulp.task("watch", function(){
-
-        if (browserSync){
-            browserSync.init({
-                server: {
-                    baseDir: "./build"
-                }
-            });
-        }
-
-        watches.forEach(function({ watch, name, browserSyncReload }){
-            if (browserSync && browserSyncReload){
-                gulp.watch(watch, gulp.series(name)).on("change", browserSync.reload);
-            } else {
-                gulp.watch(watch, gulp.series(name));
-            }
-        });
+function lazyLoadTask(task) {
+  if (task.uses) {
+    let stream = require(task.path)({
+      task,
+      env
     });
 
-    tasks.push("watch");
+    gulp.task(task.name, stream);
+
+    tasks.push({
+      sort: task.sort,
+      name: task.name
+    });
+
+    if (task.watch && env.dev) {
+      watches.push({
+        watch: task.watch,
+        name: task.name,
+        browserSyncReload: task.browserSyncReload
+      });
+    }
+  }
 }
 
-gulp.task("clean", function(){
-    return require("del")([
-        config.build
-    ]);
+if (Array.isArray(config.tasks)) {
+  for (let i = 0; i < config.tasks.length; i++) {
+    lazyLoadTask(config.tasks[i]);
+  }
+}
+
+tasks.forEach(task => {
+  if (!(task.sort in tasksSort))
+    tasksSort[task.sort] = [];
+
+  tasksSort[task.sort].push(task.name);
 });
 
-tasks.unshift("clean");
+Object.keys(tasksSort)
+  .map(sort => Number(sort))
+  .sort((a, b) => a > b)
+  .forEach(sort => {
+    let tasks = tasksSort[sort];
+    let taskName = `group:${sort}`;
+    gulp.task(taskName, gulp.parallel.apply(gulp, tasks));
+    tasksResult.push(taskName);
+  });
 
-gulp.task("default", gulp.series.apply(gulp, tasks));
+if (env.dev) {
+  gulp.task("watch", function () {
+
+    if (browserSync) {
+      browserSync.init({
+        server: {
+          baseDir: "./build"
+        }
+      });
+    }
+
+    watches.forEach(function ({ watch, name, browserSyncReload }) {
+      if (browserSync && browserSyncReload) {
+        gulp.watch(watch, gulp.series(name)).on("change", browserSync.reload);
+      } else {
+        gulp.watch(watch, gulp.series(name));
+      }
+    });
+  });
+
+  tasksResult.push("watch");
+}
+
+gulp.task("clean", function () {
+  return require("del")([
+    config.build
+  ]);
+});
+
+tasksResult.unshift("clean");
+
+gulp.task("default", gulp.series.apply(gulp, tasksResult));

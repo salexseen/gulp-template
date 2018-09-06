@@ -3,13 +3,13 @@
 const gulp = require("gulp");
 const $ = require("gulp-load-plugins")();
 
-module.exports = function ({ name, src, build, env } = {}) {
+module.exports = function ({ env, task }) {
   return function (callback) {
-    return gulp.src(src)
+    return gulp.src(task.src)
       .pipe($.plumber({
         errorHandler: $.notify.onError(function (error) {
           return {
-            title: name,
+            title: task.name,
             message: error.message
           };
         })
@@ -17,6 +17,6 @@ module.exports = function ({ name, src, build, env } = {}) {
       .pipe($.pug({
         pretty: true
       }))
-      .pipe(gulp.dest(build));
+      .pipe(gulp.dest(task.build));
   };
 };
