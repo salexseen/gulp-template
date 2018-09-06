@@ -1,1 +1,24 @@
 /* sass style entry */
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url("../image/sprite-image.png");
+  background-size: 79px 79px; }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    .icon {
+      background-image: url("../image/sprite-image@2x.png"); } }
+
+.icon_calendar {
+  background-position: 0px 0px;
+  width: 32px;
+  height: 32px; }
+
+.icon_hourglass {
+  background-position: -47px 0px;
+  width: 32px;
+  height: 32px; }
+
+.icon_smartphone-call {
+  background-position: 0px -47px;
+  width: 32px;
+  height: 32px; }

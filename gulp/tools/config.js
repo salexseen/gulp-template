@@ -37,14 +37,14 @@ exports.tasks = [
     uses: true,
     name: "style:sass",
     path: path.join(tasks, "sass.js"),
-    src: path.join(src, "styles/sass/*.{scss,sass}"),
-    watch: path.join(src, "styles/sass/**/*.{scss,sass}"),
+    src: path.join(src, "styles/*.{scss,sass}"),
+    watch: path.join(src, "styles/**/*.{scss,sass}"),
     build: path.join(build, "css"),
     browserSyncStream: true
   },
   {
     sort: 50,
-    uses: true,
+    uses: false,
     name: "style:less",
     path: path.join(tasks, "less.js"),
     src: path.join(src, "styles/less/*.less"),
@@ -54,7 +54,7 @@ exports.tasks = [
   },
   {
     sort: 50,
-    uses: true,
+    uses: false,
     name: "style:stylus",
     path: path.join(tasks, "stylus.js"),
     src: path.join(src, "styles/stylus/*.styl"),
@@ -75,7 +75,22 @@ exports.tasks = [
     uses: true,
     name: "image",
     path: path.join(tasks, "image.js"),
-    src: path.join(src, "image/**/*.{jpeg,png,gif,jpg,bmp}"),
+    src: [
+      path.join(src, "image/**/*.{jpeg,png,gif,jpg,bmp}"),
+      path.join("!", src, "image/sprite/*")
+    ],
     build: path.join(build, "image")
+  },
+  {
+    sort: 10,
+    uses: true,
+    name: "sprite:image",
+    path: path.join(tasks, "sprite-image.js"),
+    src: path.join(src, "image/sprite/*.{jpeg,png,gif,jpg,bmp}"),
+    build: path.join(build, "image"),
+    style: path.join(src, "styles/sprite"),
+    spritesmith: {
+      retinaSrcFilter: path.join(src, "image/sprite/*@2x.{jpeg,png,gif,jpg,bmp}")
+    }
   }
 ];

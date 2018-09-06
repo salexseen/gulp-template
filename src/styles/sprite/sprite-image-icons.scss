@@ -1,0 +1,22 @@
+@import "sprite-image";
+
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url("#{$spritesheet-image}");
+  background-size: $spritesheet-width $spritesheet-height;
+
+  @media (min-resolution: 2dppx){
+    background-image: url("#{$retina-spritesheet-image}");
+  }
+}
+
+@each $sprite in $spritesheet-sprites {
+  $sprite-name: nth($sprite, 10);
+
+  .icon_#{$sprite-name}{
+    @include sprite-position($sprite);
+    @include sprite-width($sprite);
+    @include sprite-height($sprite);
+  }
+}

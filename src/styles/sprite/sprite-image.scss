@@ -1,0 +1,202 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$calendar-name: 'calendar';
+$calendar-x: 0px;
+$calendar-y: 0px;
+$calendar-offset-x: 0px;
+$calendar-offset-y: 0px;
+$calendar-width: 32px;
+$calendar-height: 32px;
+$calendar-total-width: 79px;
+$calendar-total-height: 79px;
+$calendar-image: '../image/sprite-image.png';
+$calendar: (0px, 0px, 0px, 0px, 32px, 32px, 79px, 79px, '../image/sprite-image.png', 'calendar', );
+$hourglass-name: 'hourglass';
+$hourglass-x: 47px;
+$hourglass-y: 0px;
+$hourglass-offset-x: -47px;
+$hourglass-offset-y: 0px;
+$hourglass-width: 32px;
+$hourglass-height: 32px;
+$hourglass-total-width: 79px;
+$hourglass-total-height: 79px;
+$hourglass-image: '../image/sprite-image.png';
+$hourglass: (47px, 0px, -47px, 0px, 32px, 32px, 79px, 79px, '../image/sprite-image.png', 'hourglass', );
+$smartphone-call-name: 'smartphone-call';
+$smartphone-call-x: 0px;
+$smartphone-call-y: 47px;
+$smartphone-call-offset-x: 0px;
+$smartphone-call-offset-y: -47px;
+$smartphone-call-width: 32px;
+$smartphone-call-height: 32px;
+$smartphone-call-total-width: 79px;
+$smartphone-call-total-height: 79px;
+$smartphone-call-image: '../image/sprite-image.png';
+$smartphone-call: (0px, 47px, 0px, -47px, 32px, 32px, 79px, 79px, '../image/sprite-image.png', 'smartphone-call', );
+$calendar-2x-name: 'calendar@2x';
+$calendar-2x-x: 0px;
+$calendar-2x-y: 0px;
+$calendar-2x-offset-x: 0px;
+$calendar-2x-offset-y: 0px;
+$calendar-2x-width: 64px;
+$calendar-2x-height: 64px;
+$calendar-2x-total-width: 158px;
+$calendar-2x-total-height: 158px;
+$calendar-2x-image: '../image/sprite-image@2x.png';
+$calendar-2x: (0px, 0px, 0px, 0px, 64px, 64px, 158px, 158px, '../image/sprite-image@2x.png', 'calendar@2x', );
+$hourglass-2x-name: 'hourglass@2x';
+$hourglass-2x-x: 94px;
+$hourglass-2x-y: 0px;
+$hourglass-2x-offset-x: -94px;
+$hourglass-2x-offset-y: 0px;
+$hourglass-2x-width: 64px;
+$hourglass-2x-height: 64px;
+$hourglass-2x-total-width: 158px;
+$hourglass-2x-total-height: 158px;
+$hourglass-2x-image: '../image/sprite-image@2x.png';
+$hourglass-2x: (94px, 0px, -94px, 0px, 64px, 64px, 158px, 158px, '../image/sprite-image@2x.png', 'hourglass@2x', );
+$smartphone-call-2x-name: 'smartphone-call@2x';
+$smartphone-call-2x-x: 0px;
+$smartphone-call-2x-y: 94px;
+$smartphone-call-2x-offset-x: 0px;
+$smartphone-call-2x-offset-y: -94px;
+$smartphone-call-2x-width: 64px;
+$smartphone-call-2x-height: 64px;
+$smartphone-call-2x-total-width: 158px;
+$smartphone-call-2x-total-height: 158px;
+$smartphone-call-2x-image: '../image/sprite-image@2x.png';
+$smartphone-call-2x: (0px, 94px, 0px, -94px, 64px, 64px, 158px, 158px, '../image/sprite-image@2x.png', 'smartphone-call@2x', );
+$spritesheet-width: 79px;
+$spritesheet-height: 79px;
+$spritesheet-image: '../image/sprite-image.png';
+$spritesheet-sprites: ($calendar, $hourglass, $smartphone-call, );
+$spritesheet: (79px, 79px, '../image/sprite-image.png', $spritesheet-sprites, );
+$retina-spritesheet-width: 158px;
+$retina-spritesheet-height: 158px;
+$retina-spritesheet-image: '../image/sprite-image@2x.png';
+$retina-spritesheet-sprites: ($calendar-2x, $hourglass-2x, $smartphone-call-2x, );
+$retina-spritesheet: (158px, 158px, '../image/sprite-image@2x.png', $retina-spritesheet-sprites, );
+
+// These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
+//
+// The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
+$calendar-group-name: 'calendar';
+$calendar-group: ('calendar', $calendar, $calendar-2x, );
+$hourglass-group-name: 'hourglass';
+$hourglass-group: ('hourglass', $hourglass, $hourglass-2x, );
+$smartphone-call-group-name: 'smartphone-call';
+$smartphone-call-group: ('smartphone-call', $smartphone-call, $smartphone-call-2x, );
+$retina-groups: ($calendar-group, $hourglass-group, $smartphone-call-group, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `retina-sprite` mixin sets up rules and a media query for a sprite/retina sprite.
+//   It should be used with a "retina group" variable.
+//
+// The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+//
+// $icon-home-group: ('icon-home', $icon-home, $icon-home-2x, );
+//
+// .icon-home {
+//   @include retina-sprite($icon-home-group);
+// }
+@mixin sprite-background-size($sprite) {
+  $sprite-total-width: nth($sprite, 7);
+  $sprite-total-height: nth($sprite, 8);
+  background-size: $sprite-total-width $sprite-total-height;
+}
+
+@mixin retina-sprite($retina-group) {
+  $normal-sprite: nth($retina-group, 2);
+  $retina-sprite: nth($retina-group, 3);
+  @include sprite($normal-sprite);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+         (min-resolution: 192dpi) {
+    @include sprite-image($retina-sprite);
+    @include sprite-background-size($normal-sprite);
+  }
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
+
+// The `retina-sprites` mixin generates a CSS rule and media query for retina groups
+//   This yields the same output as CSS retina template but can be overridden in SCSS
+//
+// @include retina-sprites($retina-groups);
+@mixin retina-sprites($retina-groups) {
+  @each $retina-group in $retina-groups {
+    $sprite-name: nth($retina-group, 1);
+    .#{$sprite-name} {
+      @include retina-sprite($retina-group);
+    }
+  }
+}
